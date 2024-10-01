@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from itertools import dropwhile, takewhile
+from itertools import filterfalse
 import instaloader
 import time
 import random
@@ -17,15 +17,13 @@ L = instaloader.Instaloader(
 
 # Instagram 帳號與暱稱的列表（可多筆）
 instagram_accounts = [
-    #{"IAccount": "diccc0213", "INickName": "冼迪琦 SIN TIK KEI Dickie"},
-    #{"IAccount": "_yunara_", "INickName": "ʏᴜɴᴀʀᴀ ᴋᴇ"},
-
-    #待啟用
-    {"IAccount": "nianlin", "INickName": "Nian Lin 林倪安"},
-    {"IAccount": "na3.17", "INickName": "𝐍𝐚𝐍𝐚 娜娜米"},
-    {"IAccount": "quokka___young", "INickName": "햅삐한 쿼카영💗"}
-    #{"IAccount": "joeni_chiaoni", "INickName": "喬怩Joeni"},
-    #{"IAccount": "fangting_tsai", "INickName": "Fangting Tsai"}
+    {"IAccount": "sayaka_oonuki", "INickName": "大貫彩香"},
+    #{"IAccount": "evaaasong", "INickName": "然然Eva🐷"},
+    #{"IAccount": "kimi.0917", "INickName": "瞳 𝐾𝑖𝑚𝑖"},
+    #{"IAccount": "changyachuu", "INickName": "Changyachu🦄 妮娜張張"},
+    #{"IAccount": "changyachuu", "INickName": "Changyachu🦄 妮娜張張"},
+    #{"IAccount": "changyachuu", "INickName": "Changyachu🦄 妮娜張張"},
+    #{"IAccount": "changyachuu", "INickName": "Changyachu🦄 妮娜張張"},
 ]
 
 # 設定要儲存 Instagram 下載的根目錄
@@ -49,8 +47,8 @@ except FileNotFoundError:
     L.save_session_to_file(session_file)  # 儲存 session 到指定路徑
 
 # 設定篩選貼文的日期範圍
-FROM = datetime(2020, 1, 1)  # 從這一天起（包含這天）
-TILL = datetime(2023, 1, 1)  # 到這一天為止（不包含這天）
+FROM = datetime(2022, 1, 1)  # 從這一天起（包含這天）
+TILL = datetime(2023, 9, 3)  # 到這一天為止（不包含這天）
 
 # 逐一處理每個 Instagram 帳號
 for account in instagram_accounts:
@@ -73,7 +71,7 @@ for account in instagram_accounts:
     total_images = 0
 
     # 下載範圍內的貼文並儲存到指定的資料夾
-    for post in takewhile(lambda p: p.date > FROM, dropwhile(lambda p: p.date > TILL, posts)):
+    for post in filterfalse(lambda p: not (FROM <= p.date < TILL), posts):
         print(post.date)  # 列出貼文日期
 
         # 儲存每篇貼文的基本資訊至 JSON 結構
