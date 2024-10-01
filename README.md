@@ -1,0 +1,3 @@
+用Python寫的程式
+1隻抓instagram照片
+1隻抓ptt表特板的照片
