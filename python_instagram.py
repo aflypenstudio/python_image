@@ -1,3 +1,7 @@
+# 本程式使用 instaloader 庫
+# pip install instaloader 安裝完才能調用
+# 其他的都是標準庫
+
 import os
 from datetime import datetime
 from itertools import filterfalse
