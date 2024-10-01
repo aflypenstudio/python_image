@@ -1,3 +1,5 @@
 用Python寫的程式
 1隻抓instagram照片
+需帳號密碼
 1隻抓ptt表特板的照片
+不需PTT帳號即可抓
